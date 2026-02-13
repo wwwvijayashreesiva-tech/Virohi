@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Dark Knight Love 🦇</title>
+
+<style>
+body{
+    margin:0;
+    background:#000;
+    color:#aaa;
+    font-family:'Segoe UI',sans-serif;
+    overflow-x:hidden;
+    text-align:center;
+}
+
+/* Rain */
+.rain{
+    position:fixed;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+    background-image:repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.08) 0px,
+        rgba(255,255,255,0.08) 2px,
+        transparent 2px,
+        transparent 6px
+    );
+    animation:rain 0.25s linear infinite;
+}
+
+@keyframes rain{
+    from{background-position:0 0;}
+    to{background-position:0 25px;}
+}
+
+/* Sections */
+.section{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    padding:60px;
+    opacity:0;
+    transform:translateY(60px);
+    transition:1.8s ease;
+}
+
+.section.visible{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.dark-title{
+    font-size:3.2em;
+    color:white;
+    text-shadow:0 0 25px #444;
+}
+
+.story{
+    max-width:750px;
+    font-size:1.3em;
+    line-height:1.9;
+    color:#888;
+}
+
+.highlight{
+    color:white;
+    font-weight:bold;
+    text-shadow:0 0 20px #666;
+}
+
+button{
+    padding:15px 45px;
+    font-size:18px;
+    border-radius:50px;
+    border:2px solid #444;
+    background:black;
+    color:white;
+    cursor:pointer;
+    margin-top:40px;
+    transition:0.4s;
+}
+
+button:hover{
+    background:#111;
+    box-shadow:0 0 30px #666;
+    transform:scale(1.15);
+}
+
+.gallery img{
+    width:230px;
+    height:230px;
+    object-fit:cover;
+    border-radius:12px;
+    margin:15px;
+    filter:brightness(60%) contrast(120%) grayscale(50%);
+    transition:0.5s;
+}
+
+.gallery img:hover{
+    filter:brightness(100%) contrast(100%) grayscale(0%);
+    transform:scale(1.1);
+}
+
+.final-message{
+    margin-top:40px;
+    font-size:2em;
+    color:white;
+    text-shadow:0 0 40px white;
+}
+
+canvas{
+    position:fixed;
+    top:0;
+    left:0;
+    pointer-events:none;
+}
+</style>
+</head>
+
+<body>
+
+<audio autoplay loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<div class="rain"></div>
+<canvas id="lightning"></canvas>
+
+<!-- 2023 -->
+<div class="section">
+    <div class="dark-title">2023🌑</div>
+    <div class="story">
+        We were just colleagues.  
+        But in the silence between conversations…  
+        <span class="highlight">I chose you.</span>
+    </div>
+</div>
+
+<!-- May 2024 -->
+<div class="section">
+    <div class="dark-title">May 2024🌒</div>
+    <div class="story">
+        You wanted something casual.  
+        But my heart never loved casually.  
+        I said… <span class="highlight">“I love you.”</span>
+    </div>
+</div>
+
+<!-- October 15 -->
+<div class="section">
+    <div class="dark-title">October 15, 2024⚡</div>
+    <div class="story">
+        Like the Dark Knight returning to Gotham…  
+        You came back.  
+        And you said…  
+        <span class="highlight">“I love you too.”</span>
+    </div>
+</div>
+
+<!-- Long Distance -->
+<div class="section">
+    <div class="dark-title">2025🌙</div>
+    <div class="story">
+        Different cities.  
+        Different skies.  
+        But the same heartbeat.  
+        Love survived the distance.
+    </div>
+</div>
+
+<!-- Final Scene -->
+<div class="section">
+    <div class="dark-title">February 2026🐾</div>
+    <div class="story">
+        Two years.  
+        Two Valentine’s Days.  
+        Still choosing each other.
+    </div>
+
+    <button onclick="cinematicEnding()">Click bbyy</button><br><br>
+
+    <div class="gallery" id="gallery" style="display:none;">
+        <img src="C:\Users\wwwvi\Downloads\rv1.jpeg">
+        <img src="C:\Users\wwwvi\Downloads\rv3.jpeg">
+        <img src="C:\Users\wwwvi\Downloads\rv4.jpeg">
+    </div>
+
+    <div id="finalText" class="final-message" style="display:none;"></div>
+</div>
+
+<script>
+
+/* Scroll Reveal */
+const sections=document.querySelectorAll(".section");
+window.addEventListener("scroll",()=>{
+    sections.forEach(section=>{
+        const top=section.getBoundingClientRect().top;
+        if(top<window.innerHeight-100){
+            section.classList.add("visible");
+        }
+    });
+});
+
+/* Lightning */
+const canvas=document.getElementById("lightning");
+const ctx=canvas.getContext("2d");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+setInterval(()=>{
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.beginPath();
+    ctx.moveTo(Math.random()*canvas.width,0);
+    ctx.lineTo(Math.random()*canvas.width,canvas.height);
+    ctx.strokeStyle="white";
+    ctx.lineWidth=2;
+    ctx.stroke();
+    setTimeout(()=>ctx.clearRect(0,0,canvas.width,canvas.height),100);
+},2500);
+
+/* Cinematic Ending */
+function cinematicEnding(){
+
+    document.getElementById("gallery").style.display="block";
+
+    let text=[
+        "In every lifetime...",
+        "In every city...",
+        "In every universe...",
+        "I would still find you.",
+        "",
+        "Rohith...",
+        "",
+        "My whole world...",
+        "Happy 2nd Valentine’s Day da bbyy",
+        "Every minute. Every second.",
+        "Every. Single. Day."
+    ];
+
+    let i=0;
+    let finalDiv=document.getElementById("finalText");
+    finalDiv.style.display="block";
+
+    function typeLine(){
+        if(i<text.length){
+            finalDiv.innerHTML+=text[i]+"<br><br>";
+            i++;
+            setTimeout(typeLine,1500);
+        }else{
+            fadeToBlack();
+        }
+    }
+
+    typeLine();
+}
+
+/* Fade to Black */
+function fadeToBlack(){
+    let fade=document.createElement("div");
+    fade.style.position="fixed";
+    fade.style.top="0";
+    fade.style.left="0";
+    fade.style.width="100%";
+    fade.style.height="100%";
+    fade.style.background="black";
+    fade.style.opacity="0";
+    fade.style.transition="4s";
+    document.body.appendChild(fade);
+
+    setTimeout(()=>{fade.style.opacity="1";},2000);
+
+    setTimeout(()=>{
+        fade.innerHTML="<div style='color:white;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:2em;text-align:center;text-shadow:0 0 30px white;'>As we always do, fuck valetines day<br><br>I LOVE YOU EVERYDAY MY ROHITH BBYYY!!!🖤</div>";
+    },5000);3
+}
+
+</script>
+
+</body>
+</html>
